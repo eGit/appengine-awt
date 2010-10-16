@@ -1,0 +1,13 @@
+#summary Future directions for development
+
+= Add text rendering support =
+
+In order to support text rendering, we need a pure java font parser/renderer. I have so far only been able to find one such library that fits the bill: [http://fonteditor.org/ fonteditor]. We need to create the appropriate font classes using this or some other library as the backend. We will have to find some free fonts that can be distributed with the awt and/or provide a mechanism for the user to add their own fonts since AppEngine will not have any that will be visible.
+
+= Add anti-aliasing for graphics rendering =
+
+This will be tricky because all of the pure java rendering code uses MultiRectAreas to draw which are by their nature not able to support anti-aliasing. We will have to change the rendering code to draw directly to a BufferedImage or something in order to support anti-aliasing fully.
+
+= Remove unneccessary code from Harmony AWT =
+
+There is a lot of code that will/can not be used in the AppEngine environment. This includes the GUI classes that left. It might be good for compatibility to leave these classes, but just stub out their methods so they do not do anything.
